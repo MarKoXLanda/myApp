@@ -7,10 +7,14 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
@@ -20,6 +24,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -38,18 +43,40 @@ class MainActivity : ComponentActivity() {
         }
     }
 
+@Composable
+fun Formulario2(){
+    LazyColumn(
+        contentPadding = PaddingValues(12.dp)
+    ){
 
+    }
+}
 @Composable
 fun Formulario(){
-    Row(
-        modifier = Modifier.fillMaxWidth().padding(30.dp),
-        horizontalArrangement = Arrangement.spacedBy(12.dp),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Text("Titulo", fontSize = 66.sp)
-        Text("Subtitulo", fontSize = 14.sp)
-        Button(onClick = {}) {
-            Text("Ingresar", fontWeight = FontWeight.Bold)
-        }
+    Column(
+        modifier = Modifier.fillMaxSize().wrapContentSize(Alignment.Center)
+    ){
+        Text("Hola", fontSize = 48.sp, fontWeight = FontWeight.Bold, color= Color.Red,
+            textAlign = TextAlign.Center,
+            modifier = Modifier.background(Color.Black).fillMaxWidth())
+        Spacer(modifier = Modifier.padding(10.dp))
+        Texto("Jetpack", Color.Red)
+        Espacio(10)
+        Texto("Compose", Color.Yellow)
     }
+}
+
+@Composable
+fun Texto(texto:String, color: Color){
+    Text(
+        text=texto,fontSize = 48.sp, fontWeight = FontWeight.Bold, color= color,
+        textAlign = TextAlign.Center,
+        modifier = Modifier.background(Color.Black).fillMaxWidth()
+    )
+}
+
+@Composable
+fun Espacio(espacio: Int){
+    Spacer(modifier=Modifier.padding(espacio.dp))
+
 }
