@@ -14,9 +14,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -106,7 +108,9 @@ fun Espacio(espacio: Int){
 fun Botones(estructura: Estructura){
     Button(
         onClick = {},
-        modifier = Modifier.background(estructura.color)
+        shape= CircleShape,
+        modifier = Modifier.size(80.dp).padding(5.dp),
+        colors= ButtonDefaults.buttonColors(estructura.color)
     ){
         Text(text = estructura.nombre)
     }
