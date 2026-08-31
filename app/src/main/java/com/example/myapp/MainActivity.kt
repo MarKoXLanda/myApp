@@ -12,16 +12,20 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.blur
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -45,14 +49,31 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Formulario2(){
+    val listaBotones = listOf(
+        Estructura("Rojo", Color.Red),
+        Estructura("Verde", Color.Green),
+        Estructura("Amarillo", Color.Yellow),
+        Estructura("Azul", Color.Blue),
+        Estructura("Cyan", Color.Cyan),
+        Estructura("Dark Grey", Color.DarkGray)
+    )
+    Spacer(modifier = Modifier.height(10.dp))
+    Text("Jetpack")
+    Spacer(modifier = Modifier.height(10.dp))
+    Text("Compose")
     LazyColumn(
         contentPadding = PaddingValues(12.dp)
-    ){
+    ){items(listaBotones){estructura->
+        Botones(estructura)
+    }
 
     }
 }
 @Composable
 fun Formulario(){
+
+
+
     Column(
         modifier = Modifier.fillMaxSize().wrapContentSize(Alignment.Center)
     ){
@@ -78,5 +99,16 @@ fun Texto(texto:String, color: Color){
 @Composable
 fun Espacio(espacio: Int){
     Spacer(modifier=Modifier.padding(espacio.dp))
+
+}
+
+@Composable
+fun Botones(estructura: Estructura){
+    Button(
+        onClick = {},
+        modifier = Modifier.background(estructura.color)
+    ){
+        Text(text = estructura.nombre)
+    }
 
 }
