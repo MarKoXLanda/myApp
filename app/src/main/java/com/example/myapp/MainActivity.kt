@@ -52,20 +52,32 @@ class MainActivity : ComponentActivity() {
 
 @Preview(showBackground = true)
 @Composable
-fun Formulario(){
+fun Formulario() {
     Column(
-        modifier = Modifier.fillMaxWidth().padding(102.dp),
-        verticalArrangement = Arrangement.spacedBy(12.dp),
+        modifier = Modifier.fillMaxSize(),
+
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Box(
-            modifier = Modifier.padding(150.dp).size(100.dp).background(color=Color.Yellow,
-                shape = CircleShape)
-        ){
-            Text("0"
-                , fontSize = 70.sp, color = Color.Black)
-    }
-    Button(
+            contentAlignment = Alignment.Center,
+            modifier = Modifier.padding(60.dp).size(80.dp).background(
+                color = Color.Blue,
+                shape = CircleShape
+            )
+        ) {
+            Text(
+                "0", fontSize = 70.sp, color = Color.Black
+            )
+        }
+        Button(
+            onClick = {},
+            shape = CircleShape,
+            modifier = Modifier.size(width = 150.dp, height = 50.dp).padding(5.dp),
+            colors = ButtonDefaults.buttonColors(Color.Black)
+        ) {
+            Text("Sumar")
 
-    ) { }
+        }
+    }
 }
+
