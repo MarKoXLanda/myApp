@@ -1,11 +1,13 @@
 package com.example.myapp
 
+import android.R
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -42,77 +44,20 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             MyAppTheme {
-
                 Formulario()
                 }
             }
         }
     }
 
-@Composable
-fun Formulario2(){
-    val listaBotones = listOf(
-        Estructura("Rojo", Color.Red),
-        Estructura("Verde", Color.Green),
-        Estructura("Amarillo", Color.Yellow),
-        Estructura("Azul", Color.Blue),
-        Estructura("Cyan", Color.Cyan),
-        Estructura("Dark Grey", Color.DarkGray)
-    )
-    Spacer(modifier = Modifier.height(10.dp))
-    Text("Jetpack")
-    Spacer(modifier = Modifier.height(10.dp))
-    Text("Compose")
-    LazyColumn(
-        contentPadding = PaddingValues(12.dp)
-    ){items(listaBotones){estructura->
-        Botones(estructura)
-    }
-
-    }
-}
+@Preview(showBackground = true)
 @Composable
 fun Formulario(){
-
-
-
-    Column(
-        modifier = Modifier.fillMaxSize().wrapContentSize(Alignment.Center)
+    Box(
+        modifier = Modifier.padding(150.dp).size(100.dp).background(color=Color.Yellow,
+        shape = CircleShape)
     ){
-        Text("Hola", fontSize = 48.sp, fontWeight = FontWeight.Bold, color= Color.Red,
-            textAlign = TextAlign.Center,
-            modifier = Modifier.background(Color.Black).fillMaxWidth())
-        Spacer(modifier = Modifier.padding(10.dp))
-        Texto("Jetpack", Color.Red)
-        Espacio(10)
-        Texto("Compose", Color.Yellow)
+        Text("Hi"
+            , fontSize = 70.sp, color = Color.Black)
     }
-}
-
-@Composable
-fun Texto(texto:String, color: Color){
-    Text(
-        text=texto,fontSize = 48.sp, fontWeight = FontWeight.Bold, color= color,
-        textAlign = TextAlign.Center,
-        modifier = Modifier.background(Color.Black).fillMaxWidth()
-    )
-}
-
-@Composable
-fun Espacio(espacio: Int){
-    Spacer(modifier=Modifier.padding(espacio.dp))
-
-}
-
-@Composable
-fun Botones(estructura: Estructura){
-    Button(
-        onClick = {},
-        shape= CircleShape,
-        modifier = Modifier.size(80.dp).padding(5.dp),
-        colors= ButtonDefaults.buttonColors(estructura.color)
-    ){
-        Text(text = estructura.nombre)
-    }
-
 }
