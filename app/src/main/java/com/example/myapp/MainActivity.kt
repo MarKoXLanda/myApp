@@ -56,7 +56,8 @@ fun Formulario() {
     Column(
         modifier = Modifier.fillMaxSize(),
 
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
     ) {
         Box(
             contentAlignment = Alignment.Center,
