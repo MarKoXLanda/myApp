@@ -59,10 +59,11 @@ fun Formulario(){
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Box(
-
+            modifier = Modifier.padding(150.dp).size(100.dp).background(color=Color.Yellow,
+                shape = CircleShape)
         ){
-            Text("")
-        }
+            Text("0"
+                , fontSize = 70.sp, color = Color.Black)
     }
     Button(
 
