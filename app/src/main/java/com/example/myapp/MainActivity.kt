@@ -131,7 +131,7 @@ fun Screen() {
 
         Spacer(modifier = Modifier.padding(30.dp))
         Button(
-            onClick = {contadorR++},
+            onClick = {contadorR--},
             shape = CircleShape,
             modifier = Modifier.padding(end = 26.dp).size(width = 150.dp, height = 50.dp).padding(5.dp),
             colors = ButtonDefaults.buttonColors(Color.Red)
