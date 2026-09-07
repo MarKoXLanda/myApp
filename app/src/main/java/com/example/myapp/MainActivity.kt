@@ -44,13 +44,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.mutableStateOf
 
+
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             MyAppTheme {
-                Formulario()
+                Screen()
                 }
             }
         }
@@ -58,13 +59,14 @@ class MainActivity : ComponentActivity() {
 
 @Preview(showBackground = true)
 @Composable
-fun Formulario() {
-    var contador by remember { mutableStateOf(0) }
+fun Screen() {
+    var contadorA by remember { mutableStateOf(0) }
+    var contadorR by remember { mutableStateOf(0) }
     Column(
         modifier = Modifier.fillMaxSize(),
-
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        horizontalAlignment = Alignment.Start,
+       // horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Top
     ) {
         Box(
             contentAlignment = Alignment.Center,
@@ -74,18 +76,82 @@ fun Formulario() {
             )
         ) {
             Text(
-                text="$contador", fontSize = 70.sp, color = Color.Black
+                text="$contadorA", fontSize = 70.sp, color = Color.Black
             )
         }
+        Spacer(modifier = Modifier.padding(30.dp))
         Button(
-            onClick = {contador++},
+            onClick = {contadorA++},
             shape = CircleShape,
-            modifier = Modifier.size(width = 150.dp, height = 50.dp).padding(5.dp),
+            modifier = Modifier.padding(start = 26.dp).size(width = 150.dp, height = 50.dp).padding(5.dp),
+            colors = ButtonDefaults.buttonColors(Color.Blue)
+        ) {
+            Text("Sumar")
+
+        }
+
+        Spacer(modifier = Modifier.padding(30.dp))
+        Button(
+            onClick = {contadorA--},
+            shape = CircleShape,
+            modifier = Modifier.padding(start = 26.dp).size(width = 150.dp, height = 50.dp).padding(5.dp),
+            colors = ButtonDefaults.buttonColors(Color.Blue)
+        ) {
+            Text("Restar")
+
+        }
+    }
+
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.End,
+        verticalArrangement = Arrangement.Top
+    ) {
+        Box(
+            contentAlignment = Alignment.Center,
+            modifier = Modifier.padding(60.dp).size(80.dp).background(
+                color = Color.Red,
+                shape = CircleShape
+            )
+        ) {
+            Text(
+                text="$contadorR", fontSize = 70.sp, color = Color.Black
+            )
+        }
+        Spacer(modifier = Modifier.padding(30.dp))
+        Button(
+            onClick = {contadorR++},
+            shape = CircleShape,
+            modifier = Modifier.padding(end = 26.dp).size(width = 150.dp, height = 50.dp).padding(5.dp),
             colors = ButtonDefaults.buttonColors(Color.Red)
         ) {
             Text("Sumar")
 
         }
+
+        Spacer(modifier = Modifier.padding(30.dp))
+        Button(
+            onClick = {contadorR++},
+            shape = CircleShape,
+            modifier = Modifier.padding(end = 26.dp).size(width = 150.dp, height = 50.dp).padding(5.dp),
+            colors = ButtonDefaults.buttonColors(Color.Red)
+        ) {
+            Text("Restar")
+
+        }
+
+        Spacer(modifier = Modifier.padding(40.dp))
+        Button(
+            onClick = {
+                contadorR=0
+                contadorA=0},
+            shape = CircleShape,
+            modifier = Modifier.padding(end=120.dp).size(width = 150.dp, height = 50.dp).padding(5.dp),
+            colors = ButtonDefaults.buttonColors(Color.Magenta)
+        ){
+            Text("Reiniciar")
+        }
+
     }
 }
 
