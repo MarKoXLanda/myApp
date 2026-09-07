@@ -62,7 +62,7 @@ fun Formulario() {
         Box(
             contentAlignment = Alignment.Center,
             modifier = Modifier.padding(60.dp).size(80.dp).background(
-                color = Color.Blue,
+                color = Color.Cyan,
                 shape = CircleShape
             )
         ) {
@@ -74,7 +74,7 @@ fun Formulario() {
             onClick = {},
             shape = CircleShape,
             modifier = Modifier.size(width = 150.dp, height = 50.dp).padding(5.dp),
-            colors = ButtonDefaults.buttonColors(Color.Black)
+            colors = ButtonDefaults.buttonColors(Color.Red)
         ) {
             Text("Sumar")
 
