@@ -45,6 +45,13 @@ import androidx.compose.runtime.setValue
 import androidx.compose.runtime.mutableStateOf
 
 
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Clear // Usaremos Clear como alternativa para restar si Remove no está en la librería core
+import androidx.compose.material3.Icon
+import androidx.compose.foundation.layout.width
+
+
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -86,6 +93,13 @@ fun Screen() {
             modifier = Modifier.padding(start = 26.dp).size(width = 150.dp, height = 50.dp).padding(5.dp),
             colors = ButtonDefaults.buttonColors(Color.Blue)
         ) {
+            Icon(
+                imageVector = Icons.Filled.Add,
+                contentDescription = "Icono Sumar",
+                tint = Color.White,
+                modifier = Modifier.size(24.dp)
+            )
+            Spacer(modifier = Modifier.width(8.dp))
             Text("Sumar")
 
         }
@@ -97,6 +111,13 @@ fun Screen() {
             modifier = Modifier.padding(start = 26.dp).size(width = 150.dp, height = 50.dp).padding(5.dp),
             colors = ButtonDefaults.buttonColors(Color.Blue)
         ) {
+            Icon(
+                imageVector = Icons.Filled.Clear,
+                contentDescription = "Icono Restar",
+                tint = Color.White,
+                modifier = Modifier.size(24.dp)
+            )
+            Spacer(modifier = Modifier.width(8.dp))
             Text("Restar")
 
         }
@@ -125,6 +146,13 @@ fun Screen() {
             modifier = Modifier.padding(end = 26.dp).size(width = 150.dp, height = 50.dp).padding(5.dp),
             colors = ButtonDefaults.buttonColors(Color.Red)
         ) {
+            Icon(
+                imageVector = Icons.Filled.Add,
+                contentDescription = "Icono SumarR",
+                tint = Color.White,
+                modifier = Modifier.size(24.dp)
+            )
+            Spacer(modifier = Modifier.width(8.dp))
             Text("Sumar")
 
         }
@@ -136,6 +164,13 @@ fun Screen() {
             modifier = Modifier.padding(end = 26.dp).size(width = 150.dp, height = 50.dp).padding(5.dp),
             colors = ButtonDefaults.buttonColors(Color.Red)
         ) {
+            Icon(
+                imageVector = Icons.Filled.Clear,
+                contentDescription = "Icono RestarR",
+                tint = Color.White,
+                modifier = Modifier.size(24.dp)
+            )
+            Spacer(modifier = Modifier.width(8.dp))
             Text("Restar")
 
         }
