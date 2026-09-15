@@ -1,6 +1,5 @@
 package com.example.myapp
 
-import android.R
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -50,6 +49,7 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Clear // Usaremos Clear como alternativa para restar si Remove no está en la librería core
 import androidx.compose.material3.Icon
 import androidx.compose.foundation.layout.width
+import androidx.compose.ui.res.painterResource
 
 
 class MainActivity : ComponentActivity() {
@@ -184,6 +184,13 @@ fun Screen() {
             modifier = Modifier.padding(end=120.dp).size(width = 150.dp, height = 50.dp).padding(5.dp),
             colors = ButtonDefaults.buttonColors(Color.Magenta)
         ){
+            Icon(
+                painter = painterResource(R.drawable.reiniciar),
+                contentDescription = "Icono Reiniciar",
+                tint = Color.Unspecified,
+                modifier = Modifier.size(24.dp)
+            )
+            Spacer(modifier = Modifier.width(8.dp))
             Text("Reiniciar")
         }
 
