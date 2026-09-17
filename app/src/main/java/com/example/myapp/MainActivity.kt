@@ -32,8 +32,11 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material3.Icon
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+
+import coil3.compose.AsyncImage
 
 
 class MainActivity : ComponentActivity() {
@@ -96,26 +99,25 @@ fun Screen() {
             Text("Tama")
 
         }
+        Spacer(modifier = Modifier.width(8.dp))
+        AsyncImage(
+            model="https://i.pinimg.com/736x/f8/01/71/f801716d5be112d2a9b48da3eb663c01.jpg",
+            contentDescription = "Imagen",
+            modifier = Modifier.size(200.dp),
+            contentScale = ContentScale.Crop
 
-        Spacer(modifier = Modifier.padding(30.dp))
-        Button(
-            onClick = {},
-            shape = CircleShape,
-            modifier = Modifier.padding(start = 26.dp).size(width = 150.dp, height = 50.dp).padding(5.dp),
-            colors = ButtonDefaults.buttonColors(Color.Blue)
-        ) {
-            Image(
-                painter = painterResource(R.drawable.tamac),
-                contentDescription = "tama",
-                //  tint = Color.White,
-                contentScale = ContentScale.Fit,
-                modifier = Modifier.size(24.dp)
-            )
-            Spacer(modifier = Modifier.width(8.dp))
-            Text("Tama")
 
-        }
+        )
+
+
+
+
+
+
+
     }
+
+
 
 
 }
