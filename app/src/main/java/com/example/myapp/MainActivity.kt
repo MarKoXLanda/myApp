@@ -1,9 +1,11 @@
 package com.example.myapp
 
 import android.os.Bundle
+import android.widget.Space
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -31,9 +33,18 @@ import androidx.compose.runtime.setValue
 import androidx.compose.material.icons.Icons
 import androidx.compose.material3.Icon
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.TextButton
+
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.sp
+
 
 
 class MainActivity : ComponentActivity() {
@@ -42,7 +53,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             MyAppTheme {
-                Screen()
+                Contenido()
                 }
             }
         }
@@ -50,74 +61,82 @@ class MainActivity : ComponentActivity() {
 
 @Preview(showBackground = true)
 @Composable
-fun Screen() {
-    var contadorA by remember { mutableStateOf(0) }
-    var contadorR by remember { mutableStateOf(0) }
+fun Contenido() {
     Column(
-        modifier = Modifier.fillMaxSize(),
-     //   horizontalAlignment = Alignment.Start,
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        modifier = Modifier.fillMaxSize().wrapContentSize(Alignment.Center),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        BotonNormal()
+        Espacio()
+        BotonNormal2()
+        Espacio()
+        BotonTexto()
+        Espacio()
+        BotonOutLine()
+        Espacio()
+        BotonIcono()
+        Espacio()
+        BotonFlotante()
+        Espacio()
 
-
-        Button(
-            onClick = {},
-            shape = CircleShape,
-            modifier = Modifier.padding(start = 26.dp).size(width = 150.dp, height = 50.dp).padding(5.dp),
-            colors = ButtonDefaults.buttonColors(Color.Blue)
-        ) {
-            Icon(
-                imageVector = Icons.Filled.Favorite,
-                contentDescription = "Icono Corazon",
-                tint = Color.Red,
-                modifier = Modifier.size(24.dp)
-            )
-            Spacer(modifier = Modifier.width(8.dp))
-            Text("Sumar")
-
-        }
-
-        Spacer(modifier = Modifier.padding(30.dp))
-        Button(
-            onClick = {},
-            shape = CircleShape,
-            modifier = Modifier.padding(start = 26.dp).size(width = 150.dp, height = 50.dp).padding(5.dp),
-            colors = ButtonDefaults.buttonColors(Color.Blue)
-        ) {
-            Image(
-                painter = painterResource(R.drawable.tamac),
-                contentDescription = "tama",
-              //  tint = Color.White,
-                contentScale = ContentScale.Fit,
-                modifier = Modifier.size(24.dp)
-            )
-            Spacer(modifier = Modifier.width(8.dp))
-            Text("Tama")
-
-        }
-
-        Spacer(modifier = Modifier.padding(30.dp))
-        Button(
-            onClick = {},
-            shape = CircleShape,
-            modifier = Modifier.padding(start = 26.dp).size(width = 150.dp, height = 50.dp).padding(5.dp),
-            colors = ButtonDefaults.buttonColors(Color.Blue)
-        ) {
-            Image(
-                painter = painterResource(R.drawable.tamac),
-                contentDescription = "tama",
-                //  tint = Color.White,
-                contentScale = ContentScale.Fit,
-                modifier = Modifier.size(24.dp)
-            )
-            Spacer(modifier = Modifier.width(8.dp))
-            Text("Tama")
-
-        }
     }
-
 
 }
 
+@Composable
+fun BotonNormal(){
+    Button(onClick = {}) {
+        Text("Mi Boton", fontSize = 30.sp)
+    }
+}
+
+@Composable
+fun Espacio(){
+    Spacer(modifier = Modifier.size(10.dp))
+}
+
+@Composable
+fun BotonNormal2(){
+    Button(onClick = {}, enabled = false) {
+        Text("Mi boton2", fontSize = 30.sp)
+    }
+}
+
+@Composable
+fun BotonTexto(){
+    TextButton(onClick = {}) {
+        Text("Mi Boton", fontSize = 30.sp)
+    }
+}
+
+@Composable
+fun BotonOutLine(){
+    OutlinedButton(onClick = {}, border = BorderStroke(3.dp,Color.Red)) {
+        Text("Mi Boton", fontSize = 30.sp)
+    }
+}
+
+@Composable
+fun BotonIcono(){
+    IconButton(onClick = {}) {
+        Icon(
+
+            painter = painterResource(R.drawable.reiniciar),
+            contentDescription = null
+        )
+    }
+}
+
+@Composable
+fun BotonFlotante(){
+    FloatingActionButton(onClick = {}, contentColor = Color.Blue,
+        containerColor = Color.Red) {
+
+        Icon(
+            painter = painterResource(R.drawable.reiniciar),
+            contentDescription = null,
+            modifier = Modifier.size(30.dp )
+        )
+    }
+}
 
