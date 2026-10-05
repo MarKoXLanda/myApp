@@ -44,7 +44,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.sp
-
+import com.atom.myapp.navigation.NavManager
 
 
 class MainActivity : ComponentActivity() {
@@ -53,7 +53,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             MyAppTheme {
-                Contenido()
+                NavManager()
                 }
             }
         }
