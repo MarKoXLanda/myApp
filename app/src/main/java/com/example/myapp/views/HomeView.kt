@@ -1,72 +1,86 @@
-package com.atom.myapp.views
+package com.example.myapp.views
 
-import android.annotation.SuppressLint
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.navigation.NavController
-import com.atom.myapp.components.MainButton
-import com.atom.myapp.components.Space
-import com.atom.myapp.components.TitleBar
-import com.atom.myapp.components.TitleView
+import androidx.compose.ui.unit.dp
+import com.example.myapp.components.Alert
+import com.example.myapp.components.MainButton
+import com.example.myapp.components.MainTextField
+import com.example.myapp.components.SpaceH
 
+import com.example.myapp.components.TwoCards
 
+import com.example.myapp.viewModel.CalcularViewModel
 
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter") //Esta instruccion ayuda a no enviar padding en el uso del Scaffold
-@OptIn(ExperimentalMaterial3Api::class) //Se egrega para el CenterAlignedTopAppBar no marque error
+@OptIn(ExperimentalMaterial3Api::class)
+
 @Composable
-fun HomeView(navController: NavController)
-{
+fun HomeView( viewModel: CalcularViewModel){
     Scaffold(
-        topBar = {
+        topBar={
             CenterAlignedTopAppBar(
-                title = { TitleBar("Home View") },
+                title={Text(text="App Descuentos",
+                    color=Color.White
+                )},
                 colors= TopAppBarDefaults.centerAlignedTopAppBarColors(
-                    containerColor = Color.Red
+                    containerColor = MaterialTheme.colorScheme.primary
                 )
             )
-        },
-        floatingActionButton = {
-
         }
-    ) {
-        ContentHomeView(navController)
+    ){
+        ContentHomeView(it,viewModel)
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ContentHomeView(navController: NavController) {
-    val id = 123
-    var opcional by remember { mutableStateOf("") }
+fun ContentHomeView(paddingValues: PaddingValues,viewModel: CalcularViewModel){
     Column(
-        modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center,
+        modifier=Modifier
+            .padding(paddingValues)
+            .padding(10.dp)
+            .fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        TitleView(name = "Home View")
-        Space()
-        TextField(
-            value = opcional,
-            onValueChange = { opcional = it },
-            label = { Text(text = "Opcional") }
+    ){
+        val state=viewModel.state
+
+        TwoCards(
+            title1="Total",
+            number1=state.totalDescuento,
+            title2="Descuento",
+            number2=state.precioDescuento
         )
-        MainButton(name = "Detail view", backColor = Color.Red, color = Color.White) {
-            navController.navigate("Detail/${id}/?${opcional}")
+        MainTextField(value=state.precio, onValueChange =
+            {viewModel.onValue(it,"precio")},label="Precio")
+        SpaceH()
+        MainTextField(value=state.descuento, onValueChange =
+            {viewModel.onValue(it,"descuento")},label="Descuento")
+        SpaceH(10.dp)
+        MainButton("Generar Descuento") {
+            viewModel.calcular()
         }
+        SpaceH()
+        MainButton("Limpiar") {
+            viewModel.limpiar()
+        }
+        if(state.showAlert){
+            Alert(title="Alerta",
+                message = "Escribe el precio y descuento",
+                confirmText = "Aceptar",
+                { viewModel.cancelAlert()}) { }
+        }
+
+
     }
 }
