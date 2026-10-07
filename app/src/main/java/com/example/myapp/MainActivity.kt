@@ -7,14 +7,23 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -24,31 +33,42 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.myapp.ui.theme.MyAppTheme
 
+
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             MyAppTheme {
+                Surface(modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.primary) { ContentView() }
 
-                Formulario()
                 }
             }
         }
     }
 
-
 @Composable
-fun Formulario(){
+fun ContentView(){
     Column(
-        modifier = Modifier.fillMaxWidth().padding(102.dp),
-        verticalArrangement = Arrangement.spacedBy(12.dp),
+        verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text("Titulo", fontSize = 56.sp)
-        Text("Subtitulo", fontSize = 34.sp)
-        Button(onClick = {}) {
-            Text("Ingresar", fontWeight = FontWeight.Bold)
+        BotonColor()
+        Spacer(modifier = Modifier.width(10.dp))
+        Button(onClick = {Thread.sleep(5000)}) {
+            Text("Llamar a API")
         }
+    }
+}
+
+@Composable
+fun BotonColor(){
+    var color: Boolean by remember { mutableStateOf(false) }
+    Button(onClick = {color=!color},
+        colors = ButtonDefaults.buttonColors(
+            containerColor = if(color) Color.Blue else Color.Red
+        )) {
+        Text("Cambiar Color")
     }
 }
