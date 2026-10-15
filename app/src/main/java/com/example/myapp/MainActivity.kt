@@ -24,6 +24,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -47,6 +48,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
        // val viewModel: MainViewModel by viewModels()
         val itemList : ItemViewModel by viewModels ()
+
         enableEdgeToEdge()
         setContent {
             MyAppTheme {
@@ -92,12 +94,13 @@ fun BotonColor(){
 @Composable
 fun ItemsView(viewModel: ItemViewModel){
     val itemList = viewModel.itemList
+    val lista by viewModel.lista.collectAsState()
     Column() {
         if(viewModel.cargando){
             CircularProgressIndicator()
         }else{
             LazyColumn() {
-                items(itemList){item->
+                items(lista){item->
                     Text(text = item.name)
                 }
             }
