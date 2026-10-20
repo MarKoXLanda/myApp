@@ -18,7 +18,9 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.text.input.InputTransformation.Companion.keyboardOptions
 import androidx.compose.material3.Button
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -37,6 +39,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.myapp.data.StoreDarkMode
 import com.example.myapp.data.StoreUserMail
 import com.example.myapp.ui.theme.MyAppTheme
 import kotlinx.coroutines.launch
@@ -46,13 +49,14 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            MyAppTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+            val darkModeStore = StoreDarkMode(this)
+            val darkMode = darkModeStore.getDarkMode.collectAsState(false)
+            MyAppTheme (darkTheme = darkMode.value){
 
+                Surface(modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background) {
+                    Greeting2(darkModeStore,darkMode.value)
+                }
                 }
             }
         }
@@ -92,4 +96,51 @@ class MainActivity : ComponentActivity() {
             Text(userMail.value.toString())
         }
     }
+
+
+@Composable
+fun Greeting2(darkModeStore: StoreDarkMode, darkMode: Boolean) {
+
+    val context = LocalContext.current
+    val scope = rememberCoroutineScope()
+    val dataStore = StoreUserMail(context)
+
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center,
+        modifier = Modifier.fillMaxSize()
+    ) {
+        var email by rememberSaveable { mutableStateOf("") }
+        var userMail = dataStore.getMail.collectAsState(initial = "")
+        TextField(
+            value = email, onValueChange = {
+                email = it
+            },
+            label = { Text("Email") },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
+
+
+        )
+        Spacer(modifier = Modifier.height(10.dp))
+        Button(onClick = {
+            scope.launch { dataStore.saveMail(email) }
+        }) {
+            Text(text = "Guardar Email")
+        }
+        Spacer(modifier = Modifier.height(10.dp))
+        Text(userMail.value.toString())
+
+        Spacer(modifier = Modifier.height(16.dp))
+        Button(onClick = {
+            scope.launch {
+                if (darkMode){darkModeStore.saveDarkMode(false)
+                }else{
+                    darkModeStore.saveDarkMode(true)
+                }
+            }
+        }) {
+            Text("Cambiar a modo oscuro")
+        }
+    }
+
 }
