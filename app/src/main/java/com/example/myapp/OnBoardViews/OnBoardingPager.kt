@@ -2,12 +2,10 @@ package com.example.myapp.OnBoardViews
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.overscroll
-import androidx.compose.foundation.pager.HorizontalPager
-import androidx.compose.foundation.pager.PagerState
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -17,8 +15,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+
 import com.example.myapp.data.PageData
 import com.google.accompanist.pager.ExperimentalPagerApi
+import com.google.accompanist.pager.HorizontalPager
+import com.google.accompanist.pager.PagerState
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
@@ -26,33 +27,46 @@ fun OnBoardingPager(
     item: List<PageData>,
     pagerState: PagerState,
     modifier: Modifier = Modifier
-){
-    Box(modifier=modifier){
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            HorizontalPager (state = pagerState) {page ->
+    )
+    {
+    Box(modifier= modifier){
+        Column(horizontalAlignment = Alignment.CenterHorizontally){
+            HorizontalPager(state = pagerState) { page ->
                 Column(
-                    modifier = Modifier.padding(60.dp).fillMaxWidth(),
+                    modifier = Modifier
+                        .padding(60.dp)
+                        .fillMaxWidth(),
                     horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                     LoaderData(modifier = Modifier.size(200.dp).fillMaxWidth().align(alignment = Alignment.CenterHorizontally),
-                         item[page].image)
-                    Text(text=item[page].titulo,modifier = Modifier.padding(top=50.dp),
-                        color = Color.Black,
-                        style = MaterialTheme.typography.displayMedium,
+                ){
+                    LoaderData(modifier = Modifier
+                        .size(200.dp)
+                        .fillMaxWidth()
+                        .align(alignment = Alignment.CenterHorizontally),
+                        item[page].image
+                    )
+                    Text(text=item[page].title,
+                        modifier=Modifier.padding(top=50.dp),
+                        color=Color.Black,
+                        style= MaterialTheme.typography.displayLarge,
                         fontWeight = FontWeight.Bold,
-                        fontSize = 20.sp
+                        fontSize=20.sp
+                    )
+                    Text(text=item[page].description,
+                        modifier=Modifier.padding(top=50.dp),
+                        color=Color.Black,
+                        style=MaterialTheme.typography.displayMedium,
+                        fontWeight = FontWeight.Light,
+                        fontSize = 14.sp
                     )
                 }
 
-
             }
-            PagerIndicator(item.size,pagerState.currentPage)
+            Pageindicator(item.size,pagerState.currentPage)
         }
-        Box(modifier = Modifier.align(Alignment.BottomCenter)){
+        Box(modifier= Modifier.align(Alignment.BottomCenter)){
             ButtonFinish(pagerState.currentPage)
         }
     }
 
 }
+
