@@ -7,20 +7,22 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.navigation.NavController
 import com.example.myapp.data.PageData
+import com.example.myapp.data.StoreBoarding
 import com.example.myapp.R
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.rememberPagerState
 
 @OptIn  (ExperimentalPagerApi::class)
 @Composable
-fun MainOnBoarding(){
-    val items= ArrayList<PageData>()
+fun MainOnBoarding(navController: NavController, store: StoreBoarding) {
+    val items = ArrayList<PageData>()
 
     items.add(
         PageData(
             R.raw.welcome,
-            title="Entrada",
+            title = "Entrada",
             description = "Descripcion de la aplicacion en el momento de la entrada"
         )
     )
@@ -28,7 +30,7 @@ fun MainOnBoarding(){
     items.add(
         PageData(
             R.raw.carwash,
-            title="Medio",
+            title = "Medio",
             description = "Descripcion de la aplicacion en el momento medio de la aplicacion"
         )
     )
@@ -36,7 +38,7 @@ fun MainOnBoarding(){
     items.add(
         PageData(
             R.raw.redcar,
-            title="Final",
+            title = "Final",
             description = "Descripcion de la aplicacion en el momento de la entrada"
         )
     )
@@ -50,7 +52,9 @@ fun MainOnBoarding(){
     )
 
     OnBoardingPager(
-        item =items, pagerState = pagerState, modifier = Modifier
+        item = items, pagerState = pagerState,
+        navController = navController, store = store,
+        modifier = Modifier
             .fillMaxSize()
             .background(Color.White)
     )

@@ -15,8 +15,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 
 import com.example.myapp.data.PageData
+import com.example.myapp.data.StoreBoarding
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.PagerState
@@ -26,6 +28,8 @@ import com.google.accompanist.pager.PagerState
 fun OnBoardingPager(
     item: List<PageData>,
     pagerState: PagerState,
+    navController: NavController,
+    store: StoreBoarding,
     modifier: Modifier = Modifier
     )
     {
@@ -64,7 +68,7 @@ fun OnBoardingPager(
             Pageindicator(item.size,pagerState.currentPage)
         }
         Box(modifier= Modifier.align(Alignment.BottomCenter)){
-            ButtonFinish(pagerState.currentPage)
+            ButtonFinish(pagerState.currentPage, item.size - 1, navController, store)
         }
     }
 
