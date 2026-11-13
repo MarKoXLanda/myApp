@@ -1,6 +1,9 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.hilt.android)
+
 }
 
 android {
@@ -45,6 +48,9 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
 
+
+
+
     //onboarding
     implementation("com.google.accompanist:accompanist-pager:0.15.0")
     //lottie files
@@ -53,6 +59,21 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:2.5.3")
     //datastore
     implementation("androidx.datastore:datastore-preferences:1.0.0")
+
+
+    // Room
+    implementation(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.compiler)
+
+    // Dagger Hilt
+    implementation(libs.dagger.hilt.android)
+    ksp(libs.dagger.hilt.compiler)
+
+    // Navigation
+    implementation(libs.androidx.navigation.compose)
+
+    // Swipe
+    implementation(libs.swipe)
 
     testImplementation(libs.junit)
     androidTestImplementation(platform(libs.androidx.compose.bom))
