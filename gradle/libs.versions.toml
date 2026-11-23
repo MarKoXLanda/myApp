@@ -35,6 +35,9 @@ dagger-hilt-android = { group = "com.google.dagger", name = "hilt-android", vers
 dagger-hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
 swipe = { group = "me.saket.swipe", name = "swipe", version.ref = "swipe" }
+#androidx-material-icons-core={group = "androidx.compose.material", name="material-icons-core"}
+
+androidx-material-icons-extended = { group = "androidx.compose.material", name = "material-icons-extended" }
 
 
 [plugins]

@@ -7,6 +7,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import com.example.myapp.model.Cronos
+
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -14,16 +15,16 @@ interface CronosDatabaseDao{
     @Query("SELECT * FROM cronos")
     fun getCronos(): Flow<List<Cronos>>
 
-    @Query("SELECT * FROM cronos WHERE id = :id")
-    fun getCronosById(id:Long): Flow<List<Cronos>>
+    @Query("SELECT * FROM cronos WHERE id= :id")
+    fun getCronosById(id:Long): Flow<Cronos>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(cronos: Cronos)
+    suspend fun insert(crono:Cronos)
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun update (cronos: Cronos)
+    suspend fun update (crono:Cronos)
 
     @Delete
-    suspend fun delete(cronos: Cronos)
-}
+    suspend fun delete(crono:Cronos)
 
+}

@@ -7,9 +7,9 @@ import androidx.room.Entity
 @Entity (tableName = "cronos")
 data class Cronos (
     @PrimaryKey(autoGenerate = true)
-    val id: Long = 0,
+    val id: Long=0,
     @ColumnInfo("title")
     val title: String,
     @ColumnInfo("crono")
-    val crono: String
+    val crono:String
 )
