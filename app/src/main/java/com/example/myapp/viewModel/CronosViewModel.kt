@@ -1,10 +1,9 @@
-package com.atom.room.viewModel
+package com.example.myapp.viewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myapp.model.Cronos
 import com.example.myapp.repository.CronosRepository
-
 
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -34,4 +33,11 @@ class CronosViewodel @Inject constructor(private  val repository
             }
         }
     }
+    fun addCrono(cronos: Cronos) =
+        viewModelScope.launch { repository.addCrono(cronos) }
+    fun updateCrono(cronos:Cronos) =
+        viewModelScope.launch { repository.updateCrono(cronos) }
+    fun deleteCrono(cronos : Cronos)=
+        viewModelScope.launch { repository.updateCrono(cronos) }
+
 }

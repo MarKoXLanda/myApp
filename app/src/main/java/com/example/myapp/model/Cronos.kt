@@ -11,5 +11,5 @@ data class Cronos (
     @ColumnInfo("title")
     val title: String,
     @ColumnInfo("crono")
-    val crono:String
+    val crono:Long
 )
