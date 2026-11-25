@@ -80,7 +80,7 @@ class CronometroViewModel
             }
         }
             else{
-
+                cronoJob?.cancel()
             }
         }
     }
