@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class CronosViewodel @Inject constructor(private  val repository
+class CronosViewModel @Inject constructor(private  val repository
 : CronosRepository
 ): ViewModel(){
         private val _cronosList =
@@ -38,6 +38,6 @@ class CronosViewodel @Inject constructor(private  val repository
     fun updateCrono(cronos:Cronos) =
         viewModelScope.launch { repository.updateCrono(cronos) }
     fun deleteCrono(cronos : Cronos)=
-        viewModelScope.launch { repository.updateCrono(cronos) }
+        viewModelScope.launch { repository.deleteCrono(cronos) }
 
 }

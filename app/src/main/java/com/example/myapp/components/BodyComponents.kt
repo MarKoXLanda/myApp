@@ -48,7 +48,7 @@ fun MainTextField(value:String,onValueChange:(String)->Unit,label:String){
 }
 
 @Composable
-fun formatTime(time : Long): String{
+fun formatTiempo(time : Long): String{
     val seconds=(time/1000) % 60
     val minutes=(time/1000) % 60
     val hours=time/1000/3600
